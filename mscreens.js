@@ -17,14 +17,13 @@ if (system.args.length === 1 || args[1] === '-h' || args[1] === '--help') {
 	console.log('Example: phantomjs mscreens.js sites.txt full');
 	phantom.exit();
 }
-//Символы перевода строки в зависимости от системы
-eol = system.os.name == 'windows' ? "\r\n" : "\n";
-//
+//Имя входного файла
 var inputfile = args[1];
+//Имя директории для результатов
 var dir = inputfile.split('.')[0]+'-'+Date.now();
 //Чтение списка сайтов из файла и создание массива с ссылками
 var content = fs.read(inputfile);
-var siteslist = content.split(eol);
+var siteslist = content.split(/[\r\n]/);
 //Создание директории для скриншотов
 fs.makeDirectory(dir);
 
